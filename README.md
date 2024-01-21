@@ -23,7 +23,7 @@
 <section>
 <h2>Requirements</h2>
 <ul>
-<li>Python 3.x</li>
+<li>Python 3.7</li>
 <li>MySQL Database</li>
 <li>MySQL Connector Python library (install using <code>pip install mysql-connector-python</code>)</li>
 </ul>
@@ -67,13 +67,8 @@
 <p>Contributions are welcome! If you find any issues or want to enhance the project, feel free to open a pull request.</p>
 </section>
 
-<section>
-<h2>License</h2>
-<p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
-</section>
-
 <footer>
-<p>&copy; 2024 Your Company Name</p>
+<p>&copy; 2024 Prabhjeet Singh</p>
 </footer>
 
 </body>
