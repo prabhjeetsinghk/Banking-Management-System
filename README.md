@@ -32,7 +32,7 @@
 <h2>Installation</h2>
 <ol>
 <li>Clone the repository:</li>
-<pre><code>git clone https://github.com/yourusername/banking-management-system.git</code></pre>
+<pre><code>git clone https://github.com/prabhjeetsinghk/Banking-Management-System.git</code></pre>
 <li>Set up the MySQL database by executing the SQL script provided in the <code>database_setup.sql</code> file.</li>
 <li>Configure the database connection in the <code>config.py</code> file by providing your MySQL database credentials.</li>
 <li>Run the application:</li>
