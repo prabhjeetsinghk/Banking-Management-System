@@ -1,8 +1,7 @@
 <body>
 
 <header>
-<h1>Python Banking Management System</h1>
-<p>Integrated with MySQL Database</p>
+<h1>Banking Management System with MySQL Database</h1>
 </header>
 
 <section>
