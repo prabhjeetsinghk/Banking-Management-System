@@ -24,6 +24,9 @@ class user_signup:
         sql_query = "INSERT INTO user_data (user_id, user_name, user_pwd) VALUES (?, ?, ?)"
         params = (user_email, user_name, hashed)
         result = db.add_user_details(query=sql_query,param=params)
+        
+        print(result)
+        
         if result:
             print('Record Added Successfully')
         else:

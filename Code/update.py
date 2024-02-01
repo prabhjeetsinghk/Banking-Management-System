@@ -19,9 +19,11 @@ class user_update:
             user_name = input("Enter your new name")
             sql_query = "UPDATE user_data SET user_name=%s where user_id=%s"
             params = (user_name, user_email)
-            db.update_user_details(query=sql_query,param=params)
-            # db.disconnect()
-            status = True
+            result = db.update_user_details(query=sql_query,param=params)
+            if result:
+                status = True
+            else:
+                status = False
         elif option == 2:
             user_pwd = input("Enter your new password")
             
@@ -29,18 +31,22 @@ class user_update:
 
             sql_query = "UPDATE user_data SET user_pwd=%s where user_id=%s"
             params = (hashed, user_email)            
-            db.update_user_details(query=sql_query,param=params)
-            # db.disconnect()
-            status = True
+            result = db.update_user_details(query=sql_query,param=params)
+            if result:
+                status = True
+            else:
+                status = False
         elif option == 3:
             user_name = input("Enter your new name")            
             user_pwd = input("Enter your new password")
             hashed = enc.strEncoder(user_pwd)
             sql_query = "UPDATE user_data SET user_name=%s, user_pwd=%s where user_id=%s"
             params = (user_name, hashed, user_email)
-            db.update_user_details(query=sql_query,param=params)
-            # db.disconnect()
-            status = True
+            result = db.update_user_details(query=sql_query,param=params)
+            if result:
+                status = True
+            else:
+                status = False
         else:
             print("You entered wrong option, Please choose correct one")
             status = False

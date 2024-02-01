@@ -4,7 +4,7 @@ from update import user_update
 
 """
 Test User:
-    email: prabhjeet1@test.com
+    email: prabhjeet1@test.comcler
     pwd: Prabh@123
 """
 
