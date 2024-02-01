@@ -4,10 +4,10 @@ from datetime import datetime
 from update import user_update
 db = UserDatabase()
 
-user_email = 'prabhjeet3@test.com'
+user_email = 'pawan1@test.com'
 user_name = 'prabhjeet'
 user_pwd = 'Prabh@123'
-# admin_type = 0
+# admin_type = 
 
 
 # sql_query = "INSERT INTO user_data (user_id, user_name, user_pwd, admin_type) VALUES (?, ?, ?, ?)"
@@ -16,10 +16,19 @@ user_pwd = 'Prabh@123'
 
 
 # sql_query = "select user_pwd, admin_type from user_data where user_id = (?)"
-# params = (user_email,)
-# cursor = db.login_execute_query(query=sql_query, param=params)
-# rows = cursor.fetchall()
+fetch_data_query = f'''
+    SELECT t1.user_name, t2.balance, t3.transaction_time FROM user_data as t1
+    INNER JOIN account_balance as t2 ON t1.user_id = t2.user_id
+    INNER JOIN transactions as t3 ON t1.user_id = t3.user_id
+    WHERE t1.user_id = (?)
+'''
 
+params = (user_email,)
+cursor = db.get_user_details(query=fetch_data_query, param=params)
+rows = cursor.fetchall()
+
+for i in rows[0]:
+    print(i)
 # for i in rows:
 #     print(i[0])
 #     print(i[1])
@@ -44,20 +53,20 @@ user_pwd = 'Prabh@123'
 
 #     for i in rows[0]:
 #         print(i)
-def selection_after_login(adminType, user_email):
-    adminType = adminType
-    email = user_email
-    if adminType == 0:
-        print("\t\t\t*******Select the o2peration to perform******\n")
-        option = int(input("1. Credit\n2. Debit\n3. Update User Profile\n\n"))
-        if option == 3:
-            d3 = user_update()
-            d3.update_user(email)
-        else:
-            print("Please select only from given options\n")
-            selection_after_login(email)
-    else:
-        print("Hello Admin, Choose below operations")
-        option = int(input("1. Add new user\n2. Update existing user"))
+# def selection_after_login(adminType, user_email):
+#     adminType = adminType
+#     email = user_email
+#     if adminType == 0:
+#         print("\t\t\t*******Select the o2peration to perform******\n")
+#         option = int(input("1. Credit\n2. Debit\n3. Update User Profile\n\n"))
+#         if option == 3:
+#             d3 = user_update()
+#             d3.update_user(email)
+#         else:
+#             print("Please select only from given options\n")
+#             selection_after_login(email)
+#     else:
+#         print("Hello Admin, Choose below operations")
+#         option = int(input("1. Add new user\n2. Update existing user"))
 
-selection_after_login(0, user_email)
+# selection_after_login(0, user_email)

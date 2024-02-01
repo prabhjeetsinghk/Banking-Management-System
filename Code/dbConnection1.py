@@ -33,6 +33,25 @@ class UserDatabase:
             ''')
             if result.fetchall():
                 print("Table 'users' created successfully.")
+            
+            result = self.cursor.execute('''
+                CREATE TABLE IF NOT EXISTS account_balance (
+                    user_id TEXT PRIMARY KEY,
+                    balance  FLOAT default 0.0                             
+                )
+            ''')
+            if result.fetchall():
+                print("Table 'account_balance' created successfully.")
+            
+            result = self.cursor.execute('''
+                CREATE TABLE IF NOT EXISTS transactions (
+                    user_id TEXT,
+                    transaction_time TEXT,
+                    primary key (user_id, transaction_time)                        
+                )
+            ''')
+            if result.fetchall():
+                print("Table 'transactions' created successfully.")
 
             result = self.cursor.execute('''
                 CREATE TABLE IF NOT EXISTS keytable (
@@ -80,6 +99,28 @@ class UserDatabase:
            
         
     def add_user_details(self, query, param):
+        try:
+            self.cursor.execute(query,param)
+            self.connection.commit()
+            return self.cursor
+        
+        except sqlite3.Error as e:
+            print(f"Error: {e}")
+            self.connection.rollback()
+            return False
+    
+    def update_balance(self, query, param):
+        try:
+            self.cursor.execute(query,param)
+            self.connection.commit()
+            return self.cursor
+        
+        except sqlite3.Error as e:
+            print(f"Error: {e}")
+            self.connection.rollback()
+            return False
+    
+    def update_trasaction(self, query, param):
         try:
             self.cursor.execute(query,param)
             self.connection.commit()
