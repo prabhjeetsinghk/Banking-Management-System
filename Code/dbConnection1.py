@@ -51,8 +51,7 @@ class UserDatabase:
 
     def login_execute_query(self, query, param):
         try:
-            self.cursor.execute(query, param)
-            print(f"User created successfully.")            
+            self.cursor.execute(query, param)          
             return self.cursor
         
         except sqlite3.Error as e:
@@ -70,9 +69,10 @@ class UserDatabase:
     
     def upadte_user_status(self,query,param):
         try:
-            self.cursor.execute(query, param)
-            print(f"User Updated successfully.")
-            self.connection.commit()
+            result = self.cursor.execute(query, param)
+            if result.fetchall():
+                print(f"User Updated successfully.")
+                self.connection.commit()
         
         except sqlite3.Error as e:
             print(f"Error: {e}")
