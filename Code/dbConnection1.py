@@ -5,13 +5,11 @@ class UserDatabase:
         self.database_name = database_name
         self.connection = sqlite3.connect(self.database_name)
         self.cursor = self.connection.cursor()
-        self.key = b'Fin5yZycv9vs7FkmfuWZwOc9DELDmNJ4QfnzvuoIh78='
         self.create_table()
-        self.set_key()
 
-    def set_key(self):
+    def set_key(self, key):
         try:
-            self.cursor.execute("INSERT INTO keytable (keyValue) VALUES (?)", (self.key,))
+            self.cursor.execute("INSERT INTO keytable (keyValue) VALUES (?)", (key))
             print('Key Added Successfully')
         
         except sqlite3.Error as e:
@@ -23,7 +21,7 @@ class UserDatabase:
             
     def create_table(self):
         try:
-            self.cursor.execute('''
+            result = self.cursor.execute('''
                 CREATE TABLE IF NOT EXISTS user_data (
                     user_id TEXT PRIMARY KEY,
                     user_name TEXT NOT NULL,
@@ -33,14 +31,17 @@ class UserDatabase:
                     last_logged_time TEXT                              
                 )
             ''')
-            print("Table 'users' created successfully.")
+            if result.fetchall():
+                print("Table 'users' created successfully.")
 
-            self.cursor.execute('''
+            result = self.cursor.execute('''
                 CREATE TABLE IF NOT EXISTS keytable (
                     keyValue TEXT NOT NULL              
                 )
             ''')
-            print("Table 'keytable' created successfully.")            
+
+            if result.fetchall():
+                print("Table 'keytable' created successfully.")            
             self.connection.commit()
 
         except sqlite3.Error as e:
