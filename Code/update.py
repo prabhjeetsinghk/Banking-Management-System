@@ -1,12 +1,14 @@
-from dbConnection import DBCONNECT
+# from Code.dbConnection1 import DBCONNECT
+from dbConnection1 import UserDatabase
 from login import LOGIN
 from encdecString import encdec
 
 class user_update:
     @staticmethod
     def update_user_details(user_email):
-        db = DBCONNECT(host='localhost', user='root', password='Cos@Uni#786125', database='bankdb')
-        db.connect()
+        # db = DBCONNECT(host='localhost', user='root', password='Cos@Uni#786125', database='bankdb')
+        # db.connect()
+        db = UserDatabase()
         cursor = db.getkeyvalue("select keyValue from keytable")
         for x in cursor:
             key = x[0]
@@ -48,8 +50,9 @@ class user_update:
     def update_user(user_email):
         obj1 = user_update()
         obj2 = LOGIN()
-        db = DBCONNECT(host='localhost', user='root', password='Cos@Uni#786125', database='bankdb')
-        db.connect()
+        # db = DBCONNECT(host='localhost', user='root', password='Cos@Uni#786125', database='bankdb')
+        # db.connect()
+        db = UserDatabase()
         sql_query = "select logged_in from user_data where user_id = %s"
         params = (user_email,)
         cursor = db.get_user_details(query=sql_query,param=params)

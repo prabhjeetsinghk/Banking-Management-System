@@ -1,4 +1,5 @@
-from dbConnection import DBCONNECT
+# from Code.dbConnection1 import DBCONNECT
+from dbConnection1 import UserDatabase
 from encdecString import encdec
 from datetime import datetime
 
@@ -7,8 +8,9 @@ class LOGIN:
     def user_login():
         login_status = False
         adminType = 0
-        db = DBCONNECT(host='localhost', user='root', password='Cos@Uni#786125', database='bankdb')
-        db.connect()  
+        db = UserDatabase()
+        # db = DBCONNECT(host='localhost', user='root', password='Cos@Uni#786125', database='bankdb')
+        # db.connect()  
         print("\n+++ Application Login Menu +++")
         user_email = str(input("> Enter your email: "))
         user_pwd = str(input("> Enter your Password: "))
@@ -35,10 +37,8 @@ class LOGIN:
             sql_query = "UPDATE user_data SET logged_in = 1, last_logged_time = %s WHERE user_id = %s"
             params = (now, user_email,)
             cursor = db.upadte_user_status(query=sql_query, param=params)
-            # db.disconnect()
-            login_status = True
+            login_status = True            
         else:
             print('Please enter correct email or password')
         
         return adminType, login_status, user_email
-        

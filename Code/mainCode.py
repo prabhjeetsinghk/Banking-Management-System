@@ -2,6 +2,12 @@ from login import LOGIN
 from signup import user_signup
 from update import user_update
 
+"""
+Test User:
+    email: prabhjeet1@test.com
+    pwd: Prabh@123
+"""
+
 def main_login():
     d1 = LOGIN()
     adminType, login_status, user_email = d1.user_login()
@@ -14,7 +20,7 @@ def selection_after_login(adminType, user_email):
     adminType = adminType
     email = user_email
     if adminType == 0:
-        print("\t\t\t*******Select the operation to perform******\n")
+        print("\t\t\t*******Select the o2peration to perform******\n")
         option = int(input("1. Credit\n2. Debit\n3. Update User Profile\n\n"))
         if option == 3:
             d3 = user_update()
