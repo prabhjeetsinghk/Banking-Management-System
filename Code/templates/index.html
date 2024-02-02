@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Python Web App</title>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Multiverse Bank</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+            button {
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-inline: 10px;
+            }
+        </style>
+    </head>
 </head>
 <body>
-    <h1>Welcome to My Python Web App</h1>
+    <button onclick="redirectToLogin()">Login into your account</button>
+    <button onclick="redirectToSignup()">Register your account</button>
+    
+    <script>
+        function redirectToSignup() {
+            // Redirect to the signup page
+            window.location.href = "/workspaces/Banking-Management-System/Code/templates/signup.html";
+        }
+    </script>
+    <script>
+        function redirectToLogin() {
+            // Redirect to the signup page
+            window.location.href = "login.html";
+        }
+    </script>
 </body>
 </html>
