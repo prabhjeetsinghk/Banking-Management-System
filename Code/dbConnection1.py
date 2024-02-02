@@ -1,7 +1,7 @@
 import sqlite3
 
 class UserDatabase:
-    def __init__(self, database_name="pythonbank1.db"):
+    def __init__(self, database_name="pythonbank.db"):
         self.database_name = database_name
         self.connection = sqlite3.connect(self.database_name)
         self.cursor = self.connection.cursor()
