@@ -1,34 +1,36 @@
-from dbConnection1 import UserDatabase
-from datetime import datetime
+import sqlite3
+import os
+from dotenv import load_dotenv
 
-from update import user_update
-db = UserDatabase()
+load_dotenv()
+database_name = os.getenv('DATABASE_NAME')
 
-user_email = 'pawan1@test.com'
-user_name = 'prabhjeet'
-user_pwd = 'Prabh@123'
-# admin_type = 
+user_email = 'prabh1@test.com'
 
 
 # sql_query = "INSERT INTO user_data (user_id, user_name, user_pwd, admin_type) VALUES (?, ?, ?, ?)"
 # params = (user_email, user_name, user_pwd, admin_type)
 # result = db.add_user_details(query=sql_query,param=params)
 
-
-# sql_query = "select user_pwd, admin_type from user_data where user_id = (?)"
-fetch_data_query = f'''
-    SELECT t1.user_name, t2.balance, t3.transaction_time FROM user_data as t1
-    INNER JOIN account_balance as t2 ON t1.user_id = t2.user_id
-    INNER JOIN transactions as t3 ON t1.user_id = t3.user_id
-    WHERE t1.user_id = (?)
-'''
-
+conn = sqlite3.connect(database_name)
+sql_query = "select * from user_data where user_email = (?)"
 params = (user_email,)
-cursor = db.get_user_details(query=fetch_data_query, param=params)
+# fetch_data_query = f'''
+#     SELECT t1.user_name, t2.balance, t3.transaction_time FROM user_data as t1
+#     INNER JOIN account_balance as t2 ON t1.user_id = t2.user_id
+#     INNER JOIN transactions as t3 ON t1.user_id = t3.user_id
+#     WHERE t1.user_id = (?)
+# '''
+# cursor = conn.execute(query=sql_query, param=params)
+
+cursor = conn.execute('''
+            select * from user_data where user_email = (?)
+        ''', (user_email, ))
 rows = cursor.fetchall()
 
-for i in rows[0]:
+for i in rows:
     print(i)
+
 # for i in rows:
 #     print(i[0])
 #     print(i[1])

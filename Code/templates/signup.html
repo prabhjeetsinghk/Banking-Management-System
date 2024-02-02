@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 0;
+            padding: 60;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -21,12 +21,13 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 400px;
+            text-align: center;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: bold;
         }
 
@@ -41,15 +42,16 @@
             background-color: #4caf50;
             color: #fff;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 50px;
             border-radius: 4px;
             cursor: pointer;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-    <form>
-        <h2>Signup</h2>
+    <form  action="/signup" method="post">
+        <h2 >Register your account here!</h2>
         <label for="fullname">Full Name:</label>
         <input type="text" id="fullname" name="fullname" required>
 
@@ -66,9 +68,36 @@
         <input type="tel" id="phone" name="phone" required>
 
         <label for="address">Address:</label>
-        <textarea id="address" name="address" rows="4" required></textarea>
+        <textarea id="address" name="address" rows="4" cols="50" required></textarea>
 
         <button type="submit">Signup</button>
     </form>
+    <script>
+        $(document).ready(function() {
+          $('form').submit(function(event) {
+            event.preventDefault();
+      
+            // Your form data and AJAX request
+            var formData = $(this).serialize();
+            $.post('/signup', formData, function(response) {
+              if (response.success) {
+                // Show a success popup (you can replace this with your preferred modal library)
+                alert('Signup successful! Welcome, ' + response.fullname);
+
+                // Clear the form fields
+                $('form')[0].reset();
+              } else {
+                // Handle signup failure if needed
+                alert('Signup failed. Please try again.');
+              }
+            });
+          });
+
+        $('#loginButton').click(function() {
+      // Redirect to the login page
+        window.location.href = '/login';
+        });
+        });
+      </script>
 </body>
 </html>

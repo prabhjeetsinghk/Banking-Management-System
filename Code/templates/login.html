@@ -53,9 +53,10 @@
             cursor: pointer;
         }
     </style>
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-    <form>
+    <form action="/login" method="post">
         <h2>Login</h2>
         
         <label for="email">Email:</label>
@@ -63,12 +64,13 @@
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
-
+<!-- 
         <label for="captcha">CAPTCHA:</label>
         <img src="https://www.researchgate.net/profile/Yang-Wai-Chow/publication/290106865/figure/fig3/AS:568357871996934@1512518484934/Example-of-PDM-character-extraction-for-the-animated-CAPTCHA-available-on-the-Sandbox.png" alt="CAPTCHA">
-        <input type="text" id="captcha" name="captcha" required>
+        <input type="text" id="captcha" name="captcha" required> -->
 
         <button type="submit">Login</button>
     </form>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-from dbConnection1 import UserDatabase
+from Code.CreateDatabase import UserDatabase
 from encdecString import encdec
 from datetime import datetime
 import re
@@ -6,7 +6,7 @@ import streamlit as st
 
 def render_signup_page():  
     with st.form(key='signup_form'):              
-        st.title('Signup Page')
+        st.title('Register your account here!')
         user_name = st.text_input("Enter your name")
         user_email = st.text_input("Enter your email")
         user_pwd = st.text_input("Enter your password", type="password")

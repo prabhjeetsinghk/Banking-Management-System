@@ -38,13 +38,13 @@
     <script>
         function redirectToSignup() {
             // Redirect to the signup page
-            window.location.href = "/workspaces/Banking-Management-System/Code/templates/signup.html";
+            window.location.href = "{{ url_for('signup') }}";
         }
     </script>
     <script>
         function redirectToLogin() {
             // Redirect to the signup page
-            window.location.href = "login.html";
+            window.location.href = "{{ url_for('login') }}";
         }
     </script>
 </body>
