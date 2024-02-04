@@ -38,19 +38,28 @@ def home(email):
 def index():
     return render_template('index.html')
 
-@app.route('/logout')
-def logout():
+@app.route('/logout/<email>',methods=['POST'])
+def logout(email):
+    conn = sqlite3.connect(database_name)
+    cursor = conn.execute('''
+            UPDATE user_data SET logged_in = 0 WHERE user_email = (?)
+        ''', (email, ))
+    rows = cursor.fetchall()
+
+    if not rows:
+        # Handle the case when the user with the provided email is not found
+        return render_template('error.html', message="Please try again")
+
+    conn.commit()    
+    conn.close()
+
     return render_template('index.html')
 
 @app.route('/view_transactions')
 def view_transactions():
     return render_template('index.html')
 
-@app.route('/credit')
-def credit():
-    return render_template('index.html')
-
-@app.route('/debit')
+@app.route('/make_transaction/<email>',methods=['GET', 'POST'])
 def debit():
     return render_template('index.html')
 

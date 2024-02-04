@@ -6,30 +6,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Home</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+    .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #868ce1;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #0e0101;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #a96c12;
+}
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: rgb(107, 27, 27);
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}   
+</style>
 </head>
 <body>
 
-    <h1>Welcome, {{ user_name }}</h1>
-
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url_for('logout') }}">Logout</a></li>
-            <li class="breadcrumb-item"><a href="{{ url_for('view_transactions') }}">View Transactions</a></li>
-            <li class="breadcrumb-item"><a href="{{ url_for('credit') }}">Credit</a></li>
-            <li class="breadcrumb-item"><a href="{{ url_for('debit') }}">Debit</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Home</li>
-        </ol>
-    </nav>
-
-    <div>
-        <p>Email: {{ user_email }}</p>
-        <p>Phone: {{ user_phone }}</p>
-        <p>Address: {{ user_address }}</p>
-        <p>Balance: {{ balance }}</p>
-        
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{{ url_for('home', email={{user_email}}) }}">About</a>
+        <a href="{{ url_for('home', email={{user_email}}) }}">Make Transaction</a>
+        <a href="{{ url_for('home', email={{user_email}}) }}">Transaction History</a>
+        <a href="{{ url_for('logout', email={{user_email}}) }}">Logout</a>
     </div>
 
-    <!-- Add any additional content or features as needed -->
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
+
+    <div id="main">
+    <h1>Welcome, {{ user_name }}</h1>
+    <p>Thank you for logging in to your account.</p>
+    <h3>Here are your details:</h3>
+
+    <p>Email: {{ user_email }}</p>
+    <p>Phone: {{ user_phone }}</p>
+    <p>Address: {{ user_address }}</p>
+    <p>Balance: {{ balance }}</p>
+    <!-- <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>     -->
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+            
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
 </body>
 </html>
