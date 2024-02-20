@@ -18,7 +18,7 @@
 <li><strong>MySQL Database Integration:</strong> All data is stored and managed using a MySQL database, ensuring data persistence.</li>
 </ul>
 </section>
-
+<h3>UI in progress</h3>
 <footer>
 <p>&copy; 2024 Prabhjeet Singh</p>
 </footer>
